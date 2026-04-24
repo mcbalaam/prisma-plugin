@@ -1,0 +1,11 @@
+[plugin]
+id = "xyz.prisma.plugin"
+name = "Hello World!"
+version = "0.0.1"
+sdk_version = "1"
+author = "@normaldifficulty"
+description = "Hello World!"
+entry = "index.ts"
+
+[permissions]
+required = ["messages:send"]
