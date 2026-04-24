@@ -12,18 +12,16 @@ function evaluate(expr: string): number | string {
   }
 }
 
-PrismaSDK.ready(() => {
-  PrismaSDK.register('beforeMessageSent', async ({ text, chatId }) => {
-    if (text === '!hello') {
-      await PrismaSDK.call('messages.send', chatId, REPLY_TEXT);
-      return { cancel: true };
-    }
-    if (text.startsWith('!calc ')) {
-      const expr = text.slice(6).trim();
-      const result = evaluate(expr);
-      await PrismaSDK.call('messages.send', chatId, `Результат: ${result}`);
-      return { cancel: true };
-    }
-    return { cancel: false };
-  });
+PrismaSDK.register('beforeMessageSent', async ({ text, chatId }) => {
+  if (text === '!hello') {
+    await PrismaSDK.call('messages.send', chatId, REPLY_TEXT);
+    return { cancel: true };
+  }
+  if (text.startsWith('!calc ')) {
+    const expr = text.slice(6).trim();
+    const result = evaluate(expr);
+    await PrismaSDK.call('messages.send', chatId, `Результат: ${result}`);
+    return { cancel: true };
+  }
+  return { cancel: false };
 });
