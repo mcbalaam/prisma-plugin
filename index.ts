@@ -1,6 +1,7 @@
 // Временно отключаем внешние типы для чистоты (PrismaSDK будет в рантайме)
 // /// <reference path="./prisma-sdk.d.ts" />
-
+window.parent.postMessage({ type: 'debug', text: 'Plugin script started' }, '*');
+window.parent.postMessage({ type: 'debug', text: `PrismaSDK available? ${typeof PrismaSDK}` }, '*');
 declare const PrismaSDK: any;
 
 const REPLY_TEXT = 'Hello World! Это сообщение было отправлено плагином prismaGram Web!';
